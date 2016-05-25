@@ -1,0 +1,40 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+    <title>Eoffice Login</title>
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+    <body style="width: 200px;">
+        <div class="container">
+            <div class="row">
+                <!--<div class="message alert alert-info"></div>-->
+                <div class="alert alert-info">
+                    <h4 class="">Batworld Emp. only</h4>
+                    <form class="form-horizontal" action="#">
+                        <input type="text" id="userName" class="form-control input-sm" placeholder="user name"/><br/>
+                        <input type="password" id="userPass" class="form-control input-sm" placeholder="Password"/><br/>
+                        <button type="button" id='loginBtn' class='btn btn-primary form-control '>Login</button>
+                    </form>
+                </div>
+
+                <div class="success hidden alert alert-success">Login Success.. :)</div>
+                <div class="warning hidden alert alert-warning">
+                    Sorry, not logged in!
+                    <a href="http://192.168.152.236" target="_blank">Go to: 192.168.152.236</a>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="app.js"></script>
+</html>
+
