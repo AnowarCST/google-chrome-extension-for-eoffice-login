@@ -1,45 +1,60 @@
 var button = document.getElementById('loginBtn');
-
+/**
+ * Default value get from LocalStorage
+ */
 document.getElementById('userName').value=localStorage.userName;
-document.getElementById('userPass').value=localStorage.userPass;
-button.onclick = function() {
+document.getElementById('userPassword').value=localStorage.userPassword;
+
+button.onclick = function()
+{
     $('.success').addClass('hidden');
     $('.warning').addClass('hidden');
 
     var userName = document.getElementById('userName').value;
-    var userPass = document.getElementById('userPass').value;
+    var userPassword = document.getElementById('userPassword').value;
 
-    //chrome.storage.sync.set({'userName': userName,'userPass': userPass}, function() {
-    //    // Notify that we saved.
-    //    message('Settings saved');
-    //});
-
+    /**
+     * Set the value in LocalStorage
+     */
     localStorage.userName=userName;
-    localStorage.userPass=userPass;
+    localStorage.userPassword=userPassword;
 
 
-    var inputEx = 'loginId='+userName+'&password='+userPass+'&isRememberMe=false';
+    /**
+     *
+     * 192.168.152.236 is a internal IP for Business Automation Ltd
+     * /Home/ValidateUserLogin?.... is the JSONP API for Eoffice login (Made by ASP.net)
+
+     **/
+
+    var inputEx = 'loginId='+userName+'&password='+userPassword+'&isRememberMe=false';
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://192.168.152.236/Home/ValidateUserLogin?"+inputEx, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
-          //handle the xhr response here
-          console.log(xhr.responseText);
-          if(xhr.responseText == 'success' || xhr.responseText == 'Success'){
-            $('.success').removeClass('hidden');
-          }else{
-            $('.warning').removeClass('hidden');
-          }
-          //$('.message').addClass('hidden');
+            //console.log(xhr.responseText);
+            /**
+             * Success/success response get from API
+             */
+            if(xhr.responseText == 'success' || xhr.responseText == 'Success'){
+                $('.success').removeClass('hidden');
+            }else{
+                $('.warning').removeClass('hidden');
+            }
         }
-      };
+    };
     xhr.send();
 
 };
 
-function success (){
-//            alert(12);
+/**
+ * These functions is made for JSONP only
+ */
+function success ()
+{
+
 }
-function Success(){
-//            alert(45);
+function Success()
+{
+
 }
